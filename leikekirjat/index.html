@@ -247,12 +247,22 @@
     function bindSideBarLinks() {
       $('#sidebar .list-group-item').click(function (e) {
         var target = $(e.target).data('target');
+        mixpanel.track(
+          "Book changed",
+          {"book": target}
+        );        
         window.location.hash = target;
         showContentByHash();
       });
     }
 
     function previousPage() {
+      mixpanel.track(
+        "Next page", {
+          "book": currentBook,
+          "page": currentPage
+        }
+      ); 
       if (currentPage > 1) {
         currentPage -= 1;
         setImage(currentPage);
@@ -261,6 +271,12 @@
     }
 
     function nextPage() {
+      mixpanel.track(
+        "Previous page", {
+          "book": currentBook,
+          "page": currentPage
+        }
+      );      
       if (currentPage < books[currentBook].numPages) {
         currentPage += 1;
         setImage(currentPage);
@@ -286,6 +302,10 @@
     }
 
     $(function () {
+      mixpanel.track(
+          "Page loaded",
+          {"referrer": document.referrer}
+      );
       console.log("loaded");
       showContentByHash();
       bindSideBarLinks();
