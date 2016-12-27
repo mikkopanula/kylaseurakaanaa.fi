@@ -63,10 +63,10 @@
           <div class="jumbotron" style="display: none;">
             <h1>SU Kaanaan leikekirjat</h1>
             <p>Tervetuloa selailemaan kylän ja Seinäjoen tapahtumia vuosien varrelta!</p>
-          </div> 
-          <div id="helpAndWelcomeWords">         
+          </div>
+          <div id="helpAndWelcomeWords">
             <p>Klikkaa oikealta valikosta haluamasi leikekirja.</p>
-          </div>  
+          </div>
           <div id="imageContent" style="display: none;">
             <nav>
               <h3>Leikekirja vuosilta <span id="bookFromYears"></span></h3>
@@ -105,7 +105,7 @@
         </div><!--/.sidebar-offcanvas-->
 
       </div><!--/row-->
-      
+
       <hr>
 
       <footer>
@@ -113,7 +113,7 @@
       </footer>
 
     </div><!--/.container-->
-    
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script type="text/javascript">
@@ -181,14 +181,14 @@
       "2015-": {
         numPages: 15
       }
-    }    
+    }
     var currentBook = undefined;
     var currentPage = 1;
 
     function showFrontPage() {
       console.log("showFrontPage");
       $('.jumbotron').show();
-      $('#helpAndWelcomeWords').show();      
+      $('#helpAndWelcomeWords').show();
       $('#imageContent').hide();
       currentBook = undefined;
       currentPage = 1;
@@ -198,7 +198,7 @@
       console.log("showBook: " + book);
       currentBook = book;
       currentPage = 1;
-      setImage(currentPage);      
+      setImage(currentPage);
       $('.jumbotron').hide();
       $('#helpAndWelcomeWords').hide();
       $('#imageContent').show();
@@ -231,7 +231,7 @@
       var previewURL = getImageURL(currentBook, image, true);
       var imageURL = getImageURL(currentBook, image, false);
       $('#previewImage').attr('src', previewURL);
-      $('#linkToFullsizeImage').attr('href', imageURL);      
+      $('#linkToFullsizeImage').attr('href', imageURL);
       updatePagination();
     }
 
@@ -241,7 +241,7 @@
       } else {
         preview = "esikatselu/"
       }
-      return "https://dl.dropboxusercontent.com/u/613586/Kaanaa%20ry/Leikekirjat/" + book + "/" + preview + image + ".JPG"
+      return "http://www.kylaseurakaanaa.fi.s3-website-eu-west-1.amazonaws.com/Leikekirjat/" + book + "/" + preview + image + ".JPG";
     }
 
     function bindSideBarLinks() {
@@ -250,7 +250,7 @@
         mixpanel.track(
           "Book changed",
           {"book": target}
-        );        
+        );
         window.location.hash = target;
         showContentByHash();
       });
@@ -262,7 +262,7 @@
           "book": currentBook,
           "page": currentPage
         }
-      ); 
+      );
       if (currentPage > 1) {
         currentPage -= 1;
         setImage(currentPage);
@@ -276,7 +276,7 @@
           "book": currentBook,
           "page": currentPage
         }
-      );      
+      );
       if (currentPage < books[currentBook].numPages) {
         currentPage += 1;
         setImage(currentPage);
